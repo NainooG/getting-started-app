@@ -1,0 +1,23 @@
+docker build -t <container-name> .  <---- . is to look in app/current directory
+remove old container -> docker stop <container-id>, docker rm <container-id>
+create and run new container -> docker run -dp 127.0.0.1:3000:3000 <container-name>
+
+persisting db
+
+## volume mount is a great choice when u need somewhere persistent to store your application data 
+
+create volume 
+docker volume create <name>
+
+start todo app container, but use --mount 
+docker run -dp 127.0.0.1:3000:3000 --mount type=volume,src=todo-db,target=//etc/todos getting-started
+
+part 5: use bind mounts
+
+docker run -it --mount type=bind,src="/$(pwd)",target=/src ubuntu bash
+
+^ after running, can mess around with interactive terminal session and see that
+if you add a file in that session, you can see it in VSCODE
+
+ctrl + d to exit ! !
+
